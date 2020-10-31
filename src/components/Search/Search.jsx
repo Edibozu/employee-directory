@@ -2,8 +2,9 @@ import React from 'react';
 import "./Search.css"
 
 const Search = () => {
+
     return (
-        <div className="search">
+        <div className="search" id="exampleInputSearch">
             <nav className="navbar navbar-light bg-light">
                 <form className="form-inline mx-auto">
                     <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
