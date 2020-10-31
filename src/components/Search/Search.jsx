@@ -1,52 +1,52 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import Table from "../Table/Table"
+import API from "../../utils/API"
 
 class Search extends Component {
-    state = {
-        search: "",
-        empoyees: [],
-    };
+    state = { employees: [], searchTerm: "", filteredEmployees: [] }
 
-    handleInputChange = (event) => {
-        this.setState({ search: event.target.value });
 
-            let input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("search");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("employeeTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                }
+    componentDidMount() {
+        API.getEmployees()
+            .then(res => {
+                console.log(res);
+                this.setState({ employees: res.data.results, filteredEmployees: res.data.results })
+
+            })
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            searchTerm: e.target.value
+        }, () => {
+            if (this.state.searchTerm === "") {
+                this.setState({ filteredEmployees: this.state.employees })
+
             }
-        }
-    };
+            else {
+                const searchedEmployee = this.state.employees.filter((employee) => {
+                    return employee.name.first.slice(0, this.state.searchTerm.length).toLowerCase() === this.state.searchTerm.toLowerCase()
+                })
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(this.state.search);
-    };
+                this.setState({ filteredEmployees: searchedEmployee })
+            }
+
+        })
+
+
+    }
 
     render() {
         return (
-            <div id="search-bar">
-                <form onSubmit={this.handleSubmit} className="text-center">
-                    <input
-                        type="text"
-                        onChange={this.handleInputChange}
-                        placeholder="Search.."
-                        id="search"
-                        name="search"
-                    />
+            <div className="col-12">
+                <h1 className="text-center my-2">Look up employees by First Name!</h1>
+                <form className="my-4 d-flex justify-content-center">
+                    <input type="text" name="searchTerm" placeholder="Search an Employee..." id="employeeSearch" value={this.state.searchTerm} onChange={this.handleChange} />
                 </form>
+                <Table employees={this.state.filteredEmployees} />
             </div>
         );
     }
 }
 
-export default Search;
+export default Search;;

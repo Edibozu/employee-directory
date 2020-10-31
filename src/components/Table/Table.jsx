@@ -1,34 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Table = (props) => {
-
-    return (
-        <div className="container">
-            {/* <div className="table"> */}
-                <table className="table table-striped table-bordered">
+class Table extends Component {
+    render() {
+        console.log(this.props)
+        return (
+            <div>
+                <table className="table table-dark" data={this.props.data}>
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Age</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Age</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {props.employeeData.map((employee, idx) => (
-                            <tr key={idx}>
-                                <td><img src={employee.picture.medium} alt="employee" /></td>
-                                <td>{employee.name.first} {employee.name.last}</td>
-                                <td>{employee.phone}</td>
-                                <td>{employee.email}</td>
-                                <td>{employee.dob.age}</td>
-                        </tr>))};
-                        </tbody>
+                        {this.props.employees.map((employee) => (
+                            <tr>
+                                <th><img src={employee.picture.medium} alt="employee" /></th>
+                                <th>{employee.name.first} {employee.name.last}</th>
+                                <th>{employee.phone}</th>
+                                <th>{employee.email}</th>
+                                <th>{employee.dob.age}</th>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
             </div>
-        // </div>
-    );
-};
+        );
+    }
+}
 
 export default Table;
