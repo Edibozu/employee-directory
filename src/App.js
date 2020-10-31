@@ -6,7 +6,7 @@ import axios from "axios";
 
 class App extends Component {
   state = {
-    employees: "",
+    employees: [],
   };
 
   componentDidMount(){
@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   getEmployees = () => {
-    axios.get("https://randomuser.me/api/?results=20").then((response) => {
+    axios.get("https://randomuser.me/api/?results=20&nat=us").then((response) => {
       this.setState({
         employees: response.data.results
       });

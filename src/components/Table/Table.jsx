@@ -20,8 +20,8 @@ const Table = (props) => {
                         <tbody>
                             {props.employeeData.map((employee) => (
                                 <tr>
-                                    <td><img src={employee.picture.medium} alt=""/></td>
-                                    <td>{employee.name.first}{employee.name.last}</td>
+                                    <td><img src={employee.picture.large} alt=""/></td>
+                                    <td>{employee.name.first} {employee.name.last}</td>
                                     <td>{employee.phone}</td>
                                     <td>{employee.email}</td>
                                     <td>{employee.dob.date}</td>
