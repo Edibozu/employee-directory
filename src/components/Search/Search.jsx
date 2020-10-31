@@ -1,18 +1,51 @@
-import React from 'react';
-import "./Search.css"
+import React, { Component } from 'react';
 
-const Search = () => {
+class Search extends Component {
+    state = {
+        search: "",
+    }
 
-    return (
-        <div className="search" id="exampleInputSearch">
-            <nav className="navbar navbar-light bg-light">
-                <form className="form-inline mx-auto">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    {/* <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
+    handleInputChange = (event) => {
+        this.setState({ search: event.target.value })
+        let input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state.search);
+    }
+
+    render() {
+        return (
+            <div id="search-bar">
+                <form onSubmit={this.handleSubmit} className="text-center">
+                    <input
+                        type="text"
+                        onChange={this.handleInputChange}
+                        placeholder="Search.."
+                        id="search"
+                        name="search"
+                    />
                 </form>
-            </nav>
-        </div>
-    );
-};
+            </div>
+        );
+    }
+}
 
 export default Search;

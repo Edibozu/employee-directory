@@ -3,10 +3,11 @@ import "./Table.css";
 
 const Table = (props) => {
     console.log(props)
+
     return (
         <div className="container">
-            <div className="table" id="table">
-                <table className="table table-striped">
+            <div className="table">
+                <table id="table" className="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Image</th>
