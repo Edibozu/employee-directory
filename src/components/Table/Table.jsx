@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Table extends Component {
-    render() {
+    render(props) {
         console.log(this.props)
         return (
             <div>
@@ -16,7 +16,7 @@ class Table extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.employees.map((employee) => (
+                        {props.employees.map((employee) => (
                             <tr>
                                 <th><img src={employee.picture.medium} alt="employee" /></th>
                                 <th>{employee.name.first} {employee.name.last}</th>

@@ -4,6 +4,10 @@ import Search from "./components/Search/Search";
 import Table from "./components/Table/Table";
 
 class App extends Component {
+  state = {
+    employees: [],
+    results: [],
+  }
   render() {
     return (
       <div className="App">
@@ -11,7 +15,7 @@ class App extends Component {
         <Search />
         <br />
         <br />
-        <Table/>
+        <Table employees = {employees} data = {results} />
       </div>
     );
   }
