@@ -15,7 +15,7 @@ class App extends Component {
         <Search />
         <br />
         <br />
-        <Table employees = {employees} data = {results} />
+        <Table employees = {this.state.employees} data = {this.results} />
       </div>
     );
   }

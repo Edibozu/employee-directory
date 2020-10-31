@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 class Table extends Component {
-    render(props) {
+    render() {
         console.log(this.props)
         return (
             <div>
-                <table className="table table-dark" data={this.props.data}>
+                <table className="table table-striped" data={this.props.data}>
                     <thead>
                         <tr>
                             <th scope="col">Image</th>
@@ -16,7 +16,7 @@ class Table extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.employees.map((employee) => (
+                        {this.props.employees.map((employee) => (
                             <tr>
                                 <th><img src={employee.picture.medium} alt="employee" /></th>
                                 <th>{employee.name.first} {employee.name.last}</th>

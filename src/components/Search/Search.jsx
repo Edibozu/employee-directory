@@ -39,7 +39,7 @@ class Search extends Component {
     render() {
         return (
             <div className="col-12">
-                <h1 className="text-center my-2">Look up employees by First Name!</h1>
+                <h4 className="text-center my-2">Look up employees by First Name!</h4>
                 <form className="my-4 d-flex justify-content-center">
                     <input type="text" name="searchTerm" placeholder="Search an Employee..." id="employeeSearch" value={this.state.searchTerm} onChange={this.handleChange} />
                 </form>
