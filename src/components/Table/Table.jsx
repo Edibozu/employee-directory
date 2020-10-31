@@ -1,35 +1,33 @@
 import React from 'react';
-import "./Table.css";
 
 const Table = (props) => {
-    console.log(props)
 
     return (
         <div className="container">
-            <div className="table">
-                <table id="table" className="table table-striped">
+            {/* <div className="table"> */}
+                <table className="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Age</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Age</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {props.employeeData.map((employee) => (
-                            <tr>
-                                <td><img src={employee.picture.medium} alt="" /></td>
+                        {props.employeeData.map((employee, idx) => (
+                            <tr key={idx}>
+                                <td><img src={employee.picture.medium} alt="employee" /></td>
                                 <td>{employee.name.first} {employee.name.last}</td>
                                 <td>{employee.phone}</td>
                                 <td>{employee.email}</td>
                                 <td>{employee.dob.age}</td>
-                            </tr>))};
+                        </tr>))};
                         </tbody>
                 </table>
             </div>
-        </div>
+        // </div>
     );
 };
 
