@@ -20,7 +20,6 @@ class Table extends Component {
 
 
     render() {
-        console.log(this.props)
         return (
             <table className="table table-striped" data={this.props.data}>
                 <thead>
@@ -44,7 +43,7 @@ class Table extends Component {
                     ))}
                 </tbody>
             </table>
-        );
+        )
     }
 }
 
