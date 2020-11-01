@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
+import "./Table.css"
 
 class Table extends Component {
 
-        // handleSort function to take in the on Change function
-        handleSort = () => {
-            console.log("clicked handle sort");
-            // let sortedData
-            // google how to sort an array
-            let sortedData = this.state.data.sort((a, b) => {
-                return a.name.first < b.name.first ? -1 : 1;
-            });
-            console.log(sortedData);
-            this.setState({
-                filterData: sortedData,
-            });
-        }
-    
+    // handleSort function to take in the on Change function
+    handleSort = () => {
+        var employeeArr = this.props.employees;
+        employeeArr.sort((a, b) => {
+            if (a.name.first < b.name.first) return -1;
+            if (a.name.first > b.name.first) return 1;
+            return 0;
+            
+        })
+
+        this.setState({
+            filterData: employeeArr
+        });
+    }
+
 
     render() {
         console.log(this.props)
@@ -24,16 +26,16 @@ class Table extends Component {
                 <thead>
                     <tr>
                         <th scope="col">Image</th>
-                        <th scope="col"onClick={this.handleSort}>Name</th>
+                        <button className="link"><th scope="col" onClick={this.handleSort}>Name</th></button>
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
                         <th scope="col">Age</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.employees.map((employee) => (
+                    {this.props.employees.map((employee, idx) => (
                         <tr>
-                            <th><img src={employee.picture.medium} alt="employee" /></th>
+                            <th><img src={employee.picture.medium} alt="employee" key={idx}/></th>
                             <th>{employee.name.first} {employee.name.last}</th>
                             <th>{employee.phone}</th>
                             <th>{employee.email}</th>
