@@ -7,7 +7,9 @@ class App extends Component {
   state = {
     employees: [],
     results: [],
-  }
+    filterData: []
+  };
+
   render() {
     return (
       <div className="App">
@@ -15,7 +17,7 @@ class App extends Component {
         <Search />
         <br />
         <br />
-        <Table employees = {this.state.employees} data = {this.results} />
+        <Table employees={this.state.employees} data={this.results}/>
       </div>
     );
   }
